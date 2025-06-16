@@ -18,3 +18,9 @@ The app shows the current weather based on the user's location or a city they se
 - JavaScript (vanilla)
 - OpenWeatherMap API for weather data
 - IP Geolocation API for location detection
+
+## Project Structure
+
+- `index.html`: Main HTML structure of the app
+- `main.css`: All styling including dynamic backgrounds and glassmorphism effects
+- `main.js`: Handles API requests, location detection, and data rendering
