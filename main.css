@@ -1,153 +1,136 @@
 :root {
-    --main-shadow: rgba(58, 53, 53, 0.73);
-    --light-glass: rgba(255, 255, 255, 0.15);
+    --main-shadow: rgba(58, 53, 53, 0.45);
+    --light-glass: rgba(255, 255, 255, 0.18);
     --blur: blur(10px);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    margin: 0;
+
+body {
+    font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.App{
-   min-height: 100vh;
+
+.App {
     text-align: center;
-    background-color: whitesmoke;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    transition: background-image 0.5s ease-in-out;
-
 }
 
-.App .hot{
-    background-image: linear-gradient(
-        to bottom,
-        rgba(255, 16, 16, 0.52),
-        rgba(0, 0, 0, 0)
-    ),
-    url("images/app2w.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: 0.2s ease;
-    background-position: center;
+/* Hintergrund: neutral beim Start, danach je nach Temperatur warm oder kalt */
+#app_container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #5f7d95, #2f4254);
+    transition: background 0.5s ease-in-out;
 }
 
-.App .cold{
-    background-image: linear-gradient(
-        to bottom,
-        rgba(0, 255, 213, 0.52),
-        rgba(0,0,0,0)
-    ),
-    url("images/app1k.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: 0.2s ease;
-    background-position: center;
+#app_container.hot {
+    background: linear-gradient(to bottom, #f7971e, #d9455f 70%, #7b2d5b);
 }
-.main{
-    min-height: 100%;
+
+#app_container.cold {
+    background: linear-gradient(to bottom, #36d1c4, #3a7bd5 70%, #243b6b);
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
     padding: 25px;
 }
 
-.search-container{
-    width: 100%;
-    margin: 0 0 45px;
+.search-container {
+    margin-bottom: 30px;
 }
 
-.search-bar{
-    color: black;
-    font-size: 15px;
+.search-bar {
     display: block;
     width: 100%;
-    padding: 15px;
-    border: none;
-    outline: none;
-    appearance: none;
-    border-radius: 15px 15px 15px 15px;
-    box-shadow: 0px 5px rgba(58,53,53,0.73);
-    background: rgb(255, 255, 255,0.52);
-    transition: 0.4s ease;
-}
-
-
-.search-container .search-bar:focus{
-    .search-bar {
-    font-size: 16px;
-    width: 60%;
     padding: 15px 20px;
-    border: 2px solid white;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.3);
+    font-size: 16px;
     color: black;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.6);
     box-shadow: 0 4px 12px var(--main-shadow);
     transition: all 0.3s ease;
+}
+
+.search-bar::placeholder {
+    color: #333;
 }
 
 .search-bar:focus {
-    font-size: 16px;
-    width: 60%;
-    padding: 15px 20px;
-    border: 2px solid white;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.3);
-    color: black;
-    box-shadow: 0 4px 12px var(--main-shadow);
-    transition: all 0.3s ease;
-}
+    border-color: white;
+    background: rgba(255, 255, 255, 0.85);
 }
 
-.location-container{
-    .location-container {
+.message {
+    color: white;
+    font-size: 18px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    background: var(--light-glass);
+    border-radius: 15px;
+    text-shadow: 1px 1px var(--main-shadow);
+}
+
+.data-container {
+    padding: 25px 20px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 var(--main-shadow);
+}
+
+.location-container .location {
     color: white;
     font-size: 36px;
+    font-weight: 600;
     text-shadow: 2px 2px var(--main-shadow);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
+
 .location-container .date {
-    font-size: 20px;
+    color: white;
+    font-size: 18px;
     opacity: 0.9;
-    font-weight: 400;
-}
 }
 
-.location-container .date{
+.weather-container .temperature {
     color: white;
-    font-size: 20px;
-    text-align: center;
-    text-shadow: 3px 3px rgba(58,53,53,0.73);
-}
-
-.weather-container {
-    text-align: center;
-}
-
-.weather-container .temperature{
-    color: white;
-    position: relative;
-    display: block;
-    margin: 30px auto;
+    margin: 25px auto;
     padding: 20px 30px;
-    font-size: 48px;
+    font-size: 64px;
+    font-weight: 700;
     background: var(--light-glass);
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 var(--main-shadow);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     text-shadow: 1px 1px var(--main-shadow);
-    transition: all 0.3s ease-in-out;
 }
 
-.weather-container .weather-desc{
-   
-        color: white;
-    font-size: 20px;
-    font-weight: 500;
-    margin-top: 20px;
-    text-align: center;
+.weather-container .temperature.small {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.weather-container .weather {
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    text-shadow: 2px 2px var(--main-shadow);
+}
+
+.weather-container .weather-desc {
+    color: white;
+    font-size: 18px;
+    margin-top: 15px;
     padding: 10px 20px;
     background: var(--light-glass);
     border-radius: 15px;
@@ -155,14 +138,31 @@ body{
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
 }
-.data-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 30px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px 0 var(--main-shadow);
-    transition: all 0.4s ease-in-out;
+
+/* Nur für Screenreader sichtbar */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+[hidden] {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .location-container .location {
+        font-size: 28px;
+    }
+
+    .weather-container .temperature {
+        font-size: 48px;
+    }
+
+    .weather-container .temperature.small {
+        font-size: 18px;
+    }
 }

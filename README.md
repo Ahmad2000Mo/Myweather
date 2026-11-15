@@ -1,26 +1,54 @@
 # Weather App
 
-This is a simple web application that displays the current weather using only HTML, CSS, and JavaScript, without any external libraries or frameworks.
+A small weather app built with plain HTML, CSS and JavaScript, without any frameworks or libraries.
+It shows the current weather for your location or for a city you search for. The background changes with the temperature: warm colours above 18 °C, cool colours below.
 
-The app shows the current weather based on the user's location or a city they search for. The background changes automatically depending on the temperature (warm or cold). The interface is minimal and styled with a light glass-like effect.
+| Warm | Cold |
+|------|------|
+| ![Weather app with warm background](docs/screenshot-warm.png) | ![Weather app with cold background](docs/screenshot-cold.png) |
+
+The screenshots show the real interface with sample data.
 
 ## Features
 
-- Search for weather by city name
-- Automatically detect user location on first load
-- Display current temperature, high/low values, and weather description
-- Dynamic background changes based on temperature
-- Clean and responsive user interface
+- Search for the weather by city name (press Enter)
+- Detects your city on first load (optional, via IP geolocation)
+- Current temperature, high and low, weather description and wind speed
+- Background changes with the temperature
+- Clear messages for unknown cities, network problems and a missing API key
+- Works on desktop and mobile
 
-## Technologies Used
+## Setup
 
-- HTML5 and CSS3 (with custom properties and backdrop filters)
-- JavaScript (vanilla)
-- OpenWeatherMap API for weather data
-- IP Geolocation API for location detection
+The app needs a free API key from [OpenWeatherMap](https://openweathermap.org/api).
 
-## Project Structure
+1. Copy `config.example.js` and name the copy `config.js`.
+2. Enter your key in `config.js`.
+3. Open `index.html` in your browser.
 
-- `index.html`: Main HTML structure of the app
-- `main.css`: All styling including dynamic backgrounds and glassmorphism effects
-- `main.js`: Handles API requests, location detection, and data rendering
+`config.js` is listed in `.gitignore`, so your key is not uploaded to GitHub.
+
+Optional: add a key from [ipgeolocation.io](https://ipgeolocation.io) to detect the city automatically. Without it, the app starts with `defaultCity`.
+
+## Technologies
+
+- HTML5 and CSS3 (custom properties, gradients, backdrop filters)
+- JavaScript (vanilla, `fetch` with `async`/`await`)
+- [OpenWeatherMap API](https://openweathermap.org/current) for the weather data
+- [IP Geolocation API](https://ipgeolocation.io) for the location (optional)
+
+## Project structure
+
+| File                | Purpose                                                  |
+|---------------------|----------------------------------------------------------|
+| `index.html`        | Structure of the page                                    |
+| `main.css`          | Styling: gradients, glass effect, mobile layout          |
+| `main.js`           | API requests, error handling, writing data into the page |
+| `config.example.js` | Template for your API keys                               |
+
+A step-by-step explanation of the code (in German) is in [docs/ERKLAERUNG.md](docs/ERKLAERUNG.md).
+
+## Note on API keys
+
+A key used in browser JavaScript is always visible to visitors of the page, even if it is not in the repository.
+For a public deployment, the requests should go through a small server that keeps the key secret. For a local learning project, a free key in `config.js` is fine.
