@@ -2,36 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <script src="main.js" defer></script>
     <title>My Weather App</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- config.js enthält die API-Schlüssel (siehe config.example.js) -->
+    <script src="config.js" defer></script>
+    <script src="main.js" defer></script>
 </head>
 <body>
-    <div class="App" >
+    <div class="App">
         <div id="app_container">
             <main>
                 <div class="search-container">
-                    <input type="text" placeholder="Search..." class="search-bar" id="location_input">
+                    <label class="visually-hidden" for="location_input">City</label>
+                    <input type="search" placeholder="Search for a city and press Enter" class="search-bar" id="location_input" autocomplete="off">
                 </div>
-                <section class="data-container">
-                    <div class="location_container">
+                <p class="message" id="message" role="status" aria-live="polite"></p>
+                <section class="data-container" id="data_container" hidden>
+                    <div class="location-container">
                         <div class="location" id="location"></div>
                         <div class="date" id="date"></div>
-                        </div>
-                        <div class="weather-container">
-                            <div class="temperature" id="temperature_current"></div>
-                            <div class="temperature" id="temperature_max_min"></div>
-                            <div class="weather" id="weather"></div>
-                            <div class="weather-desc" id="weather_desc"></div>
+                    </div>
+                    <div class="weather-container">
+                        <div class="temperature" id="temperature_current"></div>
+                        <div class="temperature small" id="temperature_max_min"></div>
+                        <div class="weather" id="weather"></div>
+                        <div class="weather-desc" id="weather_desc"></div>
                     </div>
                 </section>
             </main>
         </div>
     </div>
-    
 </body>
 </html>
